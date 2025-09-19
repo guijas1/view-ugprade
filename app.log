@@ -81,3 +81,21 @@
 2025-09-18 23:53:18,051 - ERROR - to_time_safe: hour must be in 0..23
 2025-09-18 23:58:18,274 - ERROR - to_time_safe: hour must be in 0..23
 2025-09-19 00:03:18,532 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 19:23:44,923 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:23:44,927 - INFO - Starting up TCP server on localhost:58107
+2025-09-19 19:23:44,936 - INFO - Flet app has started...
+2025-09-19 19:23:44,938 - INFO - App URL: tcp://localhost:58107
+2025-09-19 19:23:44,938 - INFO - Starting Flet View app...
+2025-09-19 19:23:44,938 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:23:44,939 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:23:45,173 - INFO - App session started
+2025-09-19 19:23:45,183 - ERROR - ler_planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 19:28:43,471 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:28:43,473 - INFO - Starting up TCP server on localhost:60309
+2025-09-19 19:28:43,478 - INFO - Flet app has started...
+2025-09-19 19:28:43,479 - INFO - App URL: tcp://localhost:60309
+2025-09-19 19:28:43,479 - INFO - Starting Flet View app...
+2025-09-19 19:28:43,480 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:28:43,480 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:28:43,676 - INFO - App session started
+2025-09-19 19:28:43,681 - ERROR - ler_planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
