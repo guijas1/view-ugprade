@@ -1,8 +1,12 @@
-import flet as ft
-import pandas as pd
-from datetime import datetime, date, time, timedelta
-import logging, asyncio
+import math
+import logging
+import asyncio
 from typing import Optional, Tuple, List, Dict
+from datetime import datetime, date, time, timedelta
+
+import flet as ft
+from flet_audio import Audio
+import pandas as pd
 
 # ============================== Logger ==============================
 logging.basicConfig(
@@ -12,12 +16,21 @@ logging.basicConfig(
 )
 
 # ============================== Config ==============================
-MODO_TV = True                           # otimizações para exibir em TV
-SHOW_DROPDOWN = True                     # mostra o dropdown de semanas
-CAMINHO_EXCEL = r"C:\Users\Arklok\OneDrive - Quality Software SA\Documentos\Agendamentos_Rollout_2025_SO.xlsx"
+MODO_TV = True
+SHOW_DROPDOWN = True
+CAMINHO_EXCEL = r"C:\Users\Administrador\Downloads\Agendamentos_Rollout_2025_SO.xlsx"
 
-INTERVALO_ATUALIZA_TEMPORIZADOR = 1      # s (tempo real)
-INTERVALO_RELOAD_PLANILHA = 300          # s (recarregar Excel)
+INTERVALO_ATUALIZA_TEMPORIZADOR = 1      # s
+INTERVALO_RELOAD_PLANILHA = 300          # s
+
+# ---- Ajustes da visão "Hoje" (compacto sempre) ----
+DIARIO_GAP_PX       = 10      # espaçamento entre cards
+DIARIO_TOP_RESERVED = 320     # espaço para cabeçalhos (px)
+DIARIO_MIN_COLS     = 6       # colunas mínimas (mantém compacto mesmo com poucos registros)
+DIARIO_MAX_COLS     = 8       # colunas máximas
+DIARIO_MAX_ROWS     = 3       # até 3 linhas em dias cheios
+DIARIO_ASPECT_RATIO = 1.15    # largura/altura de cada célula (mais alto -> card mais “alto”)
+DIARIO_BASE_CARD_W  = 380     # base para escalar tipografia/padding
 
 # ============================== Paleta ==============================
 def paleta():
@@ -32,10 +45,10 @@ def paleta():
         DUE_BG=ft.Colors.RED_50,   DUE_BORDER=ft.Colors.RED_300,   DUE_TEXT=ft.Colors.RED_900,
     )
 
-# ===================== Escala TRAVADA (não recalcula) =====================
-def init_fixed_scale(page):
+# ===================== Escala TRAVADA =====================
+def init_fixed_scale(page: ft.Page):
     base = page.width or 1920
-    return max(0.95, min(1.10, base / 1920))  # faixa curta evita “encolher” com scrollbar
+    return max(0.95, min(1.10, base / 1920))
 
 def make_sz(fixed_scale: float):
     def sz(v): return max(10, int(v * fixed_scale))
@@ -108,26 +121,29 @@ def achar_col(df: pd.DataFrame, alts: List[str]) -> Optional[str]:
 def ler_planilha(path: str) -> pd.DataFrame:
     try:
         df = pd.read_excel(path, sheet_name="Planilha SO")
-        cd = achar_col(df, COL_DATA); ch = achar_col(df, COL_HORA); cn = achar_col(df, COL_NOME)
-        if not (cd and cn):
-            logging.error(f"Faltam colunas. Data:{cd} Nome:{cn}")
-            return pd.DataFrame()
-        df["_Data"] = df[cd].apply(to_date_safe)
-        df["_Hora"] = df[ch].apply(to_time_safe) if ch else None
-        df["_Nome"] = df[cn].astype(str).fillna("Sem nome")
-        cd2 = achar_col(df, COL_DIR); cg2 = achar_col(df, COL_GER)
-        df["_Diretoria"] = df[cd2].astype(str).fillna("") if cd2 else ""
-        df["_Gerencia"]  = df[cg2].astype(str).fillna("") if cg2 else ""
-        df = df.dropna(subset=["_Data"]).copy()
-        df["_DiaSemana"] = df["_Data"].apply(lambda d: d.weekday())
-        df = df[df["_DiaSemana"] <= 4].copy()  # seg..sex
-        df[["_AnoISO","_SemanaISO"]] = df["_Data"].apply(lambda d: pd.Series(semana_iso_de(d)))
-        df.sort_values(by=["_Data","_Hora","_Nome"], inplace=True, kind="stable")
-        df.reset_index(drop=True, inplace=True)
-        return df
     except Exception as e:
-        logging.error(f"ler_planilha: {e}")
+        logging.error(f"Erro ao abrir planilha: {e}")
         return pd.DataFrame()
+
+    cd = achar_col(df, COL_DATA); ch = achar_col(df, COL_HORA); cn = achar_col(df, COL_NOME)
+    if not (cd and cn):
+        logging.error(f"Faltam colunas. Data:{cd} Nome:{cn}")
+        return pd.DataFrame()
+
+    df["_Data"] = df[cd].apply(to_date_safe)
+    df["_Hora"] = df[ch].apply(to_time_safe) if ch else None
+    df["_Nome"] = df[cn].astype(str).fillna("Sem nome")
+    cd2 = achar_col(df, COL_DIR); cg2 = achar_col(df, COL_GER)
+    df["_Diretoria"] = df[cd2].astype(str).fillna("") if cd2 else ""
+    df["_Gerencia"]  = df[cg2].astype(str).fillna("") if cg2 else ""
+
+    df = df.dropna(subset=["_Data"]).copy()
+    df["_DiaSemana"] = df["_Data"].apply(lambda d: d.weekday())
+    df = df[df["_DiaSemana"] <= 4].copy()
+    df[["_AnoISO","_SemanaISO"]] = df["_Data"].apply(lambda d: pd.Series(semana_iso_de(d)))
+    df.sort_values(by=["_Data","_Hora","_Nome"], inplace=True, kind="stable")
+    df.reset_index(drop=True, inplace=True)
+    return df
 
 # ============================== App ==============================
 PT_DIAS = ["Segunda","Terça","Quarta","Quinta","Sexta"]
@@ -139,26 +155,24 @@ def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.LIGHT
     page.bgcolor = paleta()["BG"]
     page.padding = 16
-
-    # apontar pasta de assets para os MP3
     page.assets_dir = "assets"
 
-    # ESCALA TRAVADA
+    # escala
     FIXED_SCALE = init_fixed_scale(page)
     sz = make_sz(FIXED_SCALE)
     P = paleta()
 
-    # áudio de alertas
-    audio_warn = ft.Audio(src="alert_soon.mp3", autoplay=False, volume=1.0)  # 15 min antes
-    audio_due  = ft.Audio(src="alert_due.mp3",  autoplay=False, volume=1.0)  # estourou
+    # áudio (flet-audio)
+    audio_warn = Audio(src="/assets/alert_soon.mp3", autoplay=False, volume=1.0)
+    audio_due  = Audio(src="/assets/alert_due.mp3",  autoplay=False, volume=1.0)
     page.overlay.extend([audio_warn, audio_due])
 
-    # estado (inclui timers e alertas)
+    # estado
     state = {
         "df": pd.DataFrame(), "y": None, "w": None, "view": "week",
-        "timers": [],                  # cada item: {"ctrl":Text, "alvo":datetime, "nome":str, "warned":bool, "due":bool}
-        "alerts_warn": set(),          # nomes em janela <=15min
-        "alerts_due": set(),           # nomes estourados
+        "timers": [],          # {"ctrl":Text, "alvo":datetime, "nome":str, "warned":bool, "due":bool}
+        "alerts_warn": set(),
+        "alerts_due": set(),
     }
 
     # ---------- helpers dados ----------
@@ -197,26 +211,18 @@ def main(page: ft.Page):
         diret = reg.get("_Diretoria",""); ger = reg.get("_Gerencia","")
         htxt = h.strftime("%H:%M") if isinstance(h, time) else "--:--"
 
-        # rodapé com timer + registro para alertas
         rodape = ft.Container()
         if isinstance(d, date) and d == hoje and isinstance(h, time):
             inicial = str(calcular_temporizador(h, d)).split(".")[0]
             tempo_ctrl = ft.Text(f"Tempo até entrega: {inicial}",
                                  size=szz(18), color=P["OK"], weight=ft.FontWeight.W_600)
             alvo = datetime.combine(d, h) + timedelta(hours=3, minutes=30)
-            # registra também o nome e flags de alerta
             state["timers"].append({"ctrl": tempo_ctrl, "alvo": alvo, "nome": nome, "warned": False, "due": False})
-
             rodape = ft.Container(
-                bgcolor=P["OK_BG"],
-                border=ft.border.all(1, ft.Colors.GREEN_200),
-                border_radius=szz(10),
-                padding=szz(10),
-                content=ft.Row(
-                    [ft.Icon(ft.Icons.SCHEDULE, size=szz(20), color=P["OK"]),
-                     tempo_ctrl],
-                    spacing=szz(8), tight=True
-                ),
+                bgcolor=P["OK_BG"], border=ft.border.all(1, ft.Colors.GREEN_200),
+                border_radius=szz(10), padding=szz(10),
+                content=ft.Row([ft.Icon(ft.Icons.SCHEDULE, size=szz(20), color=P["OK"]), tempo_ctrl],
+                               spacing=szz(8), tight=True),
             )
 
         head = ft.Row(
@@ -233,45 +239,76 @@ def main(page: ft.Page):
             content=ft.Container(
                 bgcolor=P["SURFACE"], border=ft.border.all(1, P["BORDA"]),
                 border_radius=szz(14), padding=szz(12),
-                content=ft.Column(
-                    [head, ft.Row([chip(diret), chip(ger)], spacing=szz(8)), rodape],
-                    spacing=szz(10), tight=True)
+                content=ft.Column([head, ft.Row([chip(diret), chip(ger)], spacing=sz(8)), rodape],
+                                  spacing=szz(10), tight=True)
             )
         )
 
-    def coluna_dia(titulo: str, data_dia: date, registros: List[Dict], destaque_hoje: bool, altura_scroll: int) -> ft.Container:
-        header_bg = P["HEADER_HOJE_BG"] if destaque_hoje else P["HEADER_DIA_BG"]
-        header_text = P["PRIMARIA"] if destaque_hoje else P["TEXTO"]
+    # --- Tile para visão "Hoje" (escala ajustável) ---
+    def tile_diario_h(reg: Dict, hoje: date, *, w: int = 0, h: int = 0, k: float = 1.0) -> ft.Container:
+        def scale(v):  # reduz tipografia/paddings conforme o card encolhe
+            return max(10, int(v * k))
 
-        cards = [card_compromisso(r, hoje=datetime.now().date()) for r in registros] or [
-            ft.Container(
-                padding=sz(12),
+        nome = abrevia_nome(reg.get("_Nome", ""))
+        d = reg.get("_Data"); hora = reg.get("_Hora")
+        diret = reg.get("_Diretoria",""); ger = reg.get("_Gerencia","")
+        htxt = hora.strftime("%H:%M") if isinstance(hora, time) else "--:--"
+
+        header = ft.Row(
+            [
+                ft.Icon(ft.Icons.PERSON_OUTLINE, size=scale(20), color=P["TEXTO_SUAVE"]),
+                ft.Text(nome, size=scale(20), weight=ft.FontWeight.W_600, color=P["TEXTO"],
+                        no_wrap=True, overflow=ft.TextOverflow.ELLIPSIS, expand=True),
+                ft.Icon(ft.Icons.ACCESS_TIME, size=scale(18), color=P["TEXTO_SUAVE"]),
+                ft.Text(htxt, size=scale(18), color=P["TEXTO_SUAVE"]),
+            ],
+            spacing=scale(8),
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+        )
+
+        def chip_fit(texto: str) -> ft.Container:
+            if not str(texto).strip():
+                return ft.Container()
+            return ft.Container(
                 content=ft.Row(
-                    [ft.Icon(ft.Icons.INBOX, size=sz(20), color=P["TEXTO_SUAVE"]),
-                     ft.Text("Sem compromissos", size=sz(18), color=P["TEXTO_SUAVE"])],
-                    spacing=sz(8)))
-        ]
+                    [ft.Icon(ft.Icons.LABEL_OUTLINED, size=scale(14), color=P["TEXTO_SUAVE"]),
+                     ft.Text(str(texto), size=scale(14), color=P["TEXTO_SUAVE"])],
+                    spacing=scale(4), tight=True),
+                bgcolor=ft.Colors.GREY_100,
+                border=ft.border.all(1, P["BORDA"]),
+                border_radius=999,
+                padding=ft.Padding(scale(8), scale(4), scale(8), scale(4))
+            )
 
-        header = ft.Container(
-            bgcolor=header_bg, border=ft.border.all(1, P["BORDA"]),
-            border_radius=sz(12), padding=sz(10),
-            content=ft.Row(
-                [ft.Text(titulo, size=sz(22), weight=ft.FontWeight.W_700, color=header_text),
-                 ft.Container(expand=True),
-                 ft.Text(data_dia.strftime("%d/%m"), size=sz(18), color=P["TEXTO_SUAVE"])],
-                alignment=ft.MainAxisAlignment.START),
-            height=sz(52)
-        )
+        chips = ft.Row([chip_fit(diret), chip_fit(ger)], spacing=scale(6), wrap=True)
 
-        corpo = ft.Container(
-            height=altura_scroll,
-            content=ft.Column(controls=cards, spacing=sz(10), scroll=ft.ScrollMode.ALWAYS, expand=True)
-        )
+        rodape = ft.Container()
+        if isinstance(d, date) and d == hoje and isinstance(hora, time):
+            inicial = str(calcular_temporizador(hora, d)).split(".")[0]
+            tempo_ctrl = ft.Text(f"Tempo até entrega: {inicial}",
+                                 size=scale(14), color=P["OK"], weight=ft.FontWeight.W_600)
+            alvo = datetime.combine(d, hora) + timedelta(hours=3, minutes=30)
+            state["timers"].append({"ctrl": tempo_ctrl, "alvo": alvo, "nome": nome, "warned": False, "due": False})
+            rodape = ft.Container(
+                bgcolor=P["OK_BG"], border=ft.border.all(1, ft.Colors.GREEN_200),
+                border_radius=scale(6), padding=scale(6),
+                content=ft.Row([ft.Icon(ft.Icons.SCHEDULE, size=scale(16), color=P["OK"]), tempo_ctrl],
+                               spacing=scale(4), tight=True),
+            )
 
+        # Deixa GridView controlar o tamanho da célula (width/height opcionais)
         return ft.Container(
-            padding=ft.Padding(sz(8), 0, sz(8), 0),
-            width=0,
-            content=ft.Column(controls=[header, ft.Container(height=sz(10)), corpo], spacing=sz(10), expand=True)
+            width=None if (w is None or w <= 0) else w,
+            height=None if (h is None or h <= 0) else h,
+            bgcolor=P["SURFACE"],
+            border=ft.border.all(1, P["BORDA"]),
+            border_radius=scale(12),
+            padding=scale(10),
+            content=ft.Column(
+                [header, chips, ft.Container(expand=True), rodape],
+                spacing=scale(6),
+                expand=True,
+            ),
         )
 
     # ======= UI Topo + controles =======
@@ -289,7 +326,6 @@ def main(page: ft.Page):
     btn_pick = ft.IconButton(ft.Icons.EVENT, tooltip="Ir para data", on_click=lambda e: date_picker.pick_date())
     page.overlay.append(date_picker)
 
-    # alternador Semana/Hoje
     def make_view_button(texto: str, is_active: bool) -> ft.Container:
         return ft.Container(
             bgcolor=(P["PRIMARIA_50"] if is_active else ft.Colors.GREY_100),
@@ -307,8 +343,7 @@ def main(page: ft.Page):
     def set_view(mode: str):
         state["view"] = mode
         update_view_buttons()
-        if state["y"] and state["w"]:
-            render()
+        render()
 
     btn_view_semana = ft.GestureDetector(content=make_view_button("Semana", True), on_tap=lambda e: set_view("week"))
     btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
@@ -329,14 +364,11 @@ def main(page: ft.Page):
             alignment=ft.MainAxisAlignment.START)
     )
 
-    # painel de alertas (dinâmico)
     alerts_panel_col = ft.Column(spacing=sz(8), tight=True)
     alerts_panel = ft.Container(
         visible=False,
-        bgcolor=P["SURFACE"],
-        border=ft.border.all(1, P["BORDA"]),
-        border_radius=sz(16),
-        padding=sz(10),
+        bgcolor=P["SURFACE"], border=ft.border.all(1, P["BORDA"]),
+        border_radius=sz(16), padding=sz(10),
         content=alerts_panel_col
     )
 
@@ -374,11 +406,7 @@ def main(page: ft.Page):
     btn_prev.on_click = lambda e: offset_week(-1)
     btn_next.on_click = lambda e: offset_week(+1)
 
-    def on_dd_change(e):
-        if dd_semana.value:
-            y, w = map(int, dd_semana.value.split("-"))
-            set_week(y, w)
-    dd_semana.on_change = on_dd_change
+    dd_semana.on_change = lambda e: (dd_semana.value and set_week(*map(int, dd_semana.value.split("-"))))
 
     def on_date_change(e):
         d = to_date_safe(date_picker.value)
@@ -387,7 +415,6 @@ def main(page: ft.Page):
             set_week(y, w)
     date_picker.on_change = on_date_change
 
-    # atalhos
     def on_key(e: ft.KeyboardEvent):
         if e.key == "Arrow Left": offset_week(-1)
         elif e.key == "Arrow Right": offset_week(+1)
@@ -406,14 +433,12 @@ def main(page: ft.Page):
         nomes_str = ", ".join(nomes)
         return ft.Container(
             bgcolor=bg, border=ft.border.all(1, bd), border_radius=sz(12), padding=sz(10),
-            content=ft.Row(
-                [ft.Icon(icon, size=sz(22), color=tx),
-                 ft.Text(f"{title}: {nomes_str}", size=sz(18), color=tx, weight=ft.FontWeight.W_600)],
-                spacing=sz(8))
+            content=ft.Row([ft.Icon(icon, size=sz(22), color=tx),
+                            ft.Text(f"{title}: {nomes_str}", size=sz(18), color=tx, weight=ft.FontWeight.W_600)],
+                           spacing=sz(8))
         )
 
     def update_alerts_panel():
-        # monta painel com base em state["alerts_warn"] e ["alerts_due"]
         alerts_panel_col.controls.clear()
         warn_list = sorted(state["alerts_warn"])
         due_list  = sorted(state["alerts_due"])
@@ -424,20 +449,41 @@ def main(page: ft.Page):
         alerts_panel.visible = bool(warn_list or due_list)
 
     # ---------- Renders ----------
-    def render_semana(y: int, w: int, df: pd.DataFrame):
-        # limpa timers e painéis
-        state["timers"].clear()
-        state["alerts_warn"].clear()
-        state["alerts_due"].clear()
-        update_alerts_panel()
+    def coluna_dia(titulo: str, data_dia: date, registros: List[Dict], destaque_hoje: bool, altura_scroll: int) -> ft.Container:
+        header_bg = P["HEADER_HOJE_BG"] if destaque_hoje else P["HEADER_DIA_BG"]
+        header_text = P["PRIMARIA"] if destaque_hoje else P["TEXTO"]
+        cards = [card_compromisso(r, hoje=datetime.now().date()) for r in registros] or [
+            ft.Container(padding=sz(12),
+                         content=ft.Row([ft.Icon(ft.Icons.INBOX, size=sz(20), color=P["TEXTO_SUAVE"]),
+                                         ft.Text("Sem compromissos", size=sz(18), color=P["TEXTO_SUAVE"])],
+                                        spacing=sz(8)))
+        ]
+        header = ft.Container(
+            bgcolor=header_bg, border=ft.border.all(1, P["BORDA"]),
+            border_radius=sz(12), padding=sz(10),
+            content=ft.Row([ft.Text(titulo, size=sz(22), weight=ft.FontWeight.W_700, color=header_text),
+                            ft.Container(expand=True),
+                            ft.Text(data_dia.strftime("%d/%m"), size=sz(18), color=P["TEXTO_SUAVE"])],
+                           alignment=ft.MainAxisAlignment.START),
+            height=sz(52)
+        )
+        corpo = ft.Container(height=altura_scroll,
+                             content=ft.Column(controls=cards, spacing=sz(10),
+                                               scroll=ft.ScrollMode.ALWAYS, expand=True))
+        return ft.Container(padding=ft.Padding(sz(8), 0, sz(8), 0), width=0,
+                            content=ft.Column(controls=[header, ft.Container(height=sz(10)), corpo],
+                                              spacing=sz(10), expand=True))
 
+    def render_semana(y: int, w: int, df: pd.DataFrame):
+        state["timers"].clear(); state["alerts_warn"].clear(); state["alerts_due"].clear()
+        update_alerts_panel()
         seg, sex = monday_friday_from_iso(y, w)
         label_semana_txt.value = f"{seg.strftime('%d/%m/%Y')} – {sex.strftime('%d/%m/%Y')}  •  Sem {w:02d}/{y}"
         dados = dados_semana(df, y, w)
         hoje = datetime.now().date()
 
         altura_total = page.height or 1080
-        altura_scroll = max(sz(360), int(altura_total - sz(380)))  # reserva header + alerts + viewbar
+        altura_scroll = max(sz(360), int(altura_total - sz(380)))
 
         cols = []
         for i, nd in enumerate(PT_DIAS):
@@ -454,68 +500,84 @@ def main(page: ft.Page):
             content=ft.Row(cols, spacing=sz(10), alignment=ft.MainAxisAlignment.SPACE_BETWEEN, tight=True)
         )
 
+    # ---- HOJE: sempre compacto (min. 6 colunas, até 3 linhas) ----
     def render_hoje(y: int, w: int, df: pd.DataFrame):
-        # limpa timers e painéis
-        state["timers"].clear()
-        state["alerts_warn"].clear()
-        state["alerts_due"].clear()
+        state["timers"].clear(); state["alerts_warn"].clear(); state["alerts_due"].clear()
         update_alerts_panel()
 
         hoje = datetime.now().date()
-        seg, sex = monday_friday_from_iso(y, w)
+        seg, _ = monday_friday_from_iso(y, w)
         label_semana_txt.value = f"Hoje: {hoje.strftime('%A, %d/%m/%Y').title()}  •  Sem {w:02d}/{y}"
         dados = dados_semana(df, y, w)
         idx = min(max((hoje - seg).days, 0), 4)
         dia_data = seg + timedelta(days=idx)
         registros = dados.get(idx, [])
-
-        altura_total = page.height or 1080
-        altura_scroll = max(sz(480), int(altura_total - sz(340)))
+        n = max(1, len(registros))
 
         badge_hoje = ft.Container(
             bgcolor=P["HOJE_BADGE_BG"], border_radius=sz(999),
             padding=ft.Padding(sz(10), sz(6), sz(10), sz(6)),
-            content=ft.Row(
-                [ft.Icon(ft.Icons.TODAY, size=sz(18), color=P["PRIMARIA"]),
-                 ft.Text("Destaque do Dia", size=sz(16), weight=ft.FontWeight.W_600, color=P["PRIMARIA"])],
-                spacing=sz(6), tight=True
-            )
+            content=ft.Row([ft.Icon(ft.Icons.TODAY, size=sz(18), color=P["PRIMARIA"]),
+                            ft.Text("Destaque do Dia", size=sz(16), weight=ft.FontWeight.W_600, color=P["PRIMARIA"])],
+                           spacing=sz(6), tight=True)
         )
 
-        cards = [card_compromisso(r, hoje=hoje, booster=1.12) for r in registros] or [
+        wpx = page.width or 1920
+        hpx = page.height or 1080
+        gap = sz(DIARIO_GAP_PX)
+
+        # linhas pela quantidade (compacto, mas legível)
+        if n >= 14:
+            rows = min(DIARIO_MAX_ROWS, 3)
+        elif n >= 7:
+            rows = 2
+        else:
+            rows = 1 if n <= 4 else 2
+
+        # colunas necessárias e colunas finais (força mínimo/máximo)
+        cols_needed = max(1, math.ceil(n / rows))
+        cols = max(DIARIO_MIN_COLS, min(DIARIO_MAX_COLS, cols_needed))
+
+        top_reserved = sz(DIARIO_TOP_RESERVED)
+        faixa_altura = max(sz(220), int(hpx - top_reserved))
+
+        grid = ft.GridView(
+            expand=1,
+            runs_count=cols,
+            spacing=gap,
+            run_spacing=gap,
+            child_aspect_ratio=DIARIO_ASPECT_RATIO,
+        )
+
+        # fator de escala de fontes/padding (mais colunas => menor)
+        k = max(0.70, min(1.0, 6 / cols))
+        tiles = [tile_diario_h(r, hoje, k=k) for r in registros] or [
             ft.Container(
-                padding=sz(12),
-                content=ft.Row(
-                    [ft.Icon(ft.Icons.INBOX, size=sz(22), color=P["TEXTO_SUAVE"]),
-                     ft.Text("Sem compromissos para hoje.", size=sz(20), color=P["TEXTO_SUAVE"])],
-                    spacing=sz(10)))
-        ]
-
-        coluna_unica = ft.Container(
-            padding=sz(12),
-            content=ft.Column(
-                [
-                    ft.Row([
-                        ft.Text(dia_data.strftime("%A").title(), size=sz(30), weight=ft.FontWeight.W_800, color=P["PRIMARIA"]),
-                        ft.Container(width=sz(10)),
-                        badge_hoje,
-                        ft.Container(expand=True),
-                        ft.Text(dia_data.strftime("%d/%m/%Y"), size=sz(22), color=P["TEXTO_SUAVE"])
-                    ], spacing=sz(8)),
-                    ft.Container(height=sz(12)),
-                    ft.Container(
-                        height=altura_scroll,
-                        content=ft.Column(controls=cards, spacing=sz(12), scroll=ft.ScrollMode.ALWAYS, expand=True)
-                    )
-                ],
-                spacing=sz(8),
-                expand=True
+                bgcolor=P["SURFACE"], border=ft.border.all(1, P["BORDA"]),
+                border_radius=sz(12), padding=sz(10),
+                content=ft.Row([ft.Icon(ft.Icons.INBOX, size=sz(18), color=P["TEXTO_SUAVE"]),
+                                ft.Text("Sem compromissos para hoje.", size=sz(16), color=P["TEXTO_SUAVE"])],
+                               spacing=sz(6))
             )
-        )
+        ]
+        grid.controls = tiles
 
         grid_container.content = ft.Container(
             padding=sz(12), bgcolor=P["SURFACE"], border=ft.border.all(1, P["BORDA"]), border_radius=sz(16),
-            content=coluna_unica
+            content=ft.Column(
+                [
+                    ft.Row([
+                        ft.Text(dia_data.strftime("%A").title(), size=sz(26), weight=ft.FontWeight.W_800, color=P["PRIMARIA"]),
+                        ft.Container(width=sz(10)),
+                        badge_hoje,
+                        ft.Container(expand=True),
+                        ft.Text(dia_data.strftime("%d/%m/%Y"), size=sz(18), color=P["TEXTO_SUAVE"])
+                    ], spacing=sz(8)),
+                    ft.Container(height=sz(12)),
+                    ft.Container(height=faixa_altura, content=grid),
+                ],
+                spacing=sz(8), expand=True
+            )
         )
 
     def render():
@@ -532,10 +594,9 @@ def main(page: ft.Page):
         if df.empty:
             grid_container.content = ft.Container(
                 padding=sz(20), bgcolor=ft.Colors.RED_50, border=ft.border.all(1, ft.Colors.RED_400), border_radius=sz(12),
-                content=ft.Row(
-                    [ft.Icon(ft.Icons.ERROR, color=ft.Colors.RED_700, size=sz(26)),
-                     ft.Text("Erro ao carregar planilha/aba 'Planilha SO'.", size=sz(22), color=ft.Colors.RED_700)],
-                    spacing=sz(10)))
+                content=ft.Row([ft.Icon(ft.Icons.ERROR, color=ft.Colors.RED_700, size=sz(26)),
+                                ft.Text("Erro ao carregar planilha/aba 'Planilha SO'.", size=sz(22), color=ft.Colors.RED_700)],
+                               spacing=sz(10)))
             page.update(); return
 
         semanas = df[["_AnoISO","_SemanaISO"]].drop_duplicates().sort_values(by=["_AnoISO","_SemanaISO"])
@@ -562,19 +623,16 @@ def main(page: ft.Page):
             page.update(); await asyncio.sleep(1)
 
     async def tick_temporizador():
-        # Atualiza SOMENTE os textos dos timers e dispara alertas/sons
         while True:
             if state["timers"]:
                 agora = datetime.now()
                 changed = False
                 warn_changed = False
                 due_changed = False
-
                 for item in list(state["timers"]):
                     ctrl = item["ctrl"]; alvo = item["alvo"]; nome = item["nome"]
                     restante = alvo - agora
 
-                    # --- estado due ---
                     if restante.total_seconds() <= 0:
                         novo_txt = "Entrega encerrada"
                         if ctrl.value != novo_txt:
@@ -589,7 +647,6 @@ def main(page: ft.Page):
                             except Exception as e: logging.error(f"audio_due: {e}")
                         continue
 
-                    # --- estado warn (<=15min) ---
                     if restante.total_seconds() <= 15*60:
                         state["alerts_warn"].add(nome)
                         if not item["warned"]:
@@ -598,11 +655,9 @@ def main(page: ft.Page):
                             try: audio_warn.play()
                             except Exception as e: logging.error(f"audio_warn: {e}")
                     else:
-                        # se saiu da janela de 15min, remove do warn (caso tenha sido render antigo)
                         if nome in state["alerts_warn"]:
                             state["alerts_warn"].discard(nome); warn_changed = True
 
-                    # atualiza contagem
                     h = int(restante.total_seconds() // 3600)
                     m = int((restante.total_seconds() % 3600) // 60)
                     s = int(restante.total_seconds() % 60)
@@ -612,12 +667,9 @@ def main(page: ft.Page):
                         changed = True
 
                 if warn_changed or due_changed:
-                    update_alerts_panel()
-                    changed = True
-
+                    update_alerts_panel(); changed = True
                 if changed:
                     page.update()
-
             await asyncio.sleep(INTERVALO_ATUALIZA_TEMPORIZADOR)
 
     async def tick_reload_planilha():
@@ -625,22 +677,11 @@ def main(page: ft.Page):
             await asyncio.sleep(INTERVALO_RELOAD_PLANILHA)
             carregar_e_montar()
 
-    # resize (sem recalcular escala!)
-    def on_resize(e):
-        if state["y"] and state["w"] and not state["df"].empty:
-            render()
-    page.on_resized = on_resize
+    page.on_resized = lambda e: (state["y"] and state["w"] and not state["df"].empty) and render()
 
     # layout
-    page.add(
-        header,
-        ft.Container(height=sz(8)),
-        alerts_panel,
-        ft.Container(height=sz(8)),
-        view_switch,
-        ft.Container(height=sz(10)),
-        grid_container
-    )
+    page.add(header, ft.Container(height=sz(8)), alerts_panel, ft.Container(height=sz(8)),
+             view_switch, ft.Container(height=sz(10)), grid_container)
 
     # start
     carregar_e_montar()

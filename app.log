@@ -99,3 +99,407 @@
 2025-09-19 19:28:43,480 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
 2025-09-19 19:28:43,676 - INFO - App session started
 2025-09-19 19:28:43,681 - ERROR - ler_planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 19:34:43,538 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:34:43,540 - INFO - Starting up TCP server on localhost:52056
+2025-09-19 19:34:43,545 - INFO - Flet app has started...
+2025-09-19 19:34:43,546 - INFO - App URL: tcp://localhost:52056
+2025-09-19 19:34:43,546 - INFO - Starting Flet View app...
+2025-09-19 19:34:43,547 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:34:43,547 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:34:43,746 - INFO - App session started
+2025-09-19 19:36:14,127 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:36:14,129 - INFO - Starting up TCP server on localhost:62276
+2025-09-19 19:36:14,134 - INFO - Flet app has started...
+2025-09-19 19:36:14,135 - INFO - App URL: tcp://localhost:62276
+2025-09-19 19:36:14,135 - INFO - Starting Flet View app...
+2025-09-19 19:36:14,136 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:36:14,136 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:36:14,325 - INFO - App session started
+2025-09-19 19:36:14,330 - ERROR - ler_planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 19:37:27,182 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:37:27,184 - INFO - Starting up TCP server on localhost:51345
+2025-09-19 19:37:27,188 - INFO - Flet app has started...
+2025-09-19 19:37:27,190 - INFO - App URL: tcp://localhost:51345
+2025-09-19 19:37:27,190 - INFO - Starting Flet View app...
+2025-09-19 19:37:27,191 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:37:27,191 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:37:27,387 - INFO - App session started
+2025-09-19 19:37:27,812 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 19:42:27,998 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 19:47:28,073 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 19:56:20,930 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:56:20,932 - INFO - Starting up TCP server on localhost:61266
+2025-09-19 19:56:20,938 - INFO - Flet app has started...
+2025-09-19 19:56:20,941 - INFO - App URL: tcp://localhost:61266
+2025-09-19 19:56:20,941 - INFO - Starting Flet View app...
+2025-09-19 19:56:20,942 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:56:20,942 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:56:21,161 - INFO - App session started
+2025-09-19 19:56:21,166 - ERROR - ler_planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 19:59:10,170 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 19:59:10,171 - INFO - Starting up TCP server on localhost:60428
+2025-09-19 19:59:10,176 - INFO - Flet app has started...
+2025-09-19 19:59:10,177 - INFO - App URL: tcp://localhost:60428
+2025-09-19 19:59:10,177 - INFO - Starting Flet View app...
+2025-09-19 19:59:10,178 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:59:10,178 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 19:59:10,385 - INFO - App session started
+2025-09-19 19:59:11,783 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 19:59:17,455 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 19:59:17,982 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 19:59:19,097 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 19:59:20,753 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 19:59:21,101 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 19:59:36,549 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 19:59:43,299 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:02:35,084 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 417, in on_dd_change
+    set_week(y, w)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 402, in set_week
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:03:19,977 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:03:19,979 - INFO - Starting up TCP server on localhost:64792
+2025-09-19 20:03:19,984 - INFO - Flet app has started...
+2025-09-19 20:03:19,986 - INFO - App URL: tcp://localhost:64792
+2025-09-19 20:03:19,986 - INFO - Starting Flet View app...
+2025-09-19 20:03:19,987 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:03:19,987 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:03:20,207 - INFO - App session started
+2025-09-19 20:03:20,498 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:03:22,054 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:03:26,894 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 674, in <lambda>
+    page.on_resized = lambda e: (state["y"] and state["w"] and not state["df"].empty) and render()
+                                                                                          ^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:03:38,795 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:03:39,227 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("module 'flet' has no attribute 'Wrap'")>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 906, in wrapper
+    handler(*args)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 351, in <lambda>
+    btn_view_hoje   = ft.GestureDetector(content=make_view_button("Hoje", False),  on_tap=lambda e: set_view("day"))
+                                                                                                    ^^^^^^^^^^^^^^^
+  File "c:\Users\Administrador\view-upgrade\main.py", line 348, in set_view
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:08:20,620 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:08:20,646 - ERROR - exception calling callback for <Future at 0x20bafcc09b0 state=finished raised AttributeError>
+Traceback (most recent call last):
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 340, in _invoke_callbacks
+    callback(self)
+  File "C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet\core\page.py", line 895, in _on_completion
+    raise exception
+  File "c:\Users\Administrador\view-upgrade\main.py", line 671, in tick_reload_planilha
+    carregar_e_montar()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 609, in carregar_e_montar
+    set_week(y, w)
+  File "c:\Users\Administrador\view-upgrade\main.py", line 402, in set_week
+    render()
+  File "c:\Users\Administrador\view-upgrade\main.py", line 578, in render
+    render_hoje(state["y"], state["w"], state["df"])
+  File "c:\Users\Administrador\view-upgrade\main.py", line 550, in render_hoje
+    grid = ft.Wrap(controls=tiles, spacing=gap, run_spacing=gap, alignment=ft.WrapAlignment.START)
+           ^^^^^^^
+AttributeError: module 'flet' has no attribute 'Wrap'
+2025-09-19 20:17:02,963 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:17:02,966 - INFO - Starting up TCP server on localhost:50693
+2025-09-19 20:17:02,971 - INFO - Flet app has started...
+2025-09-19 20:17:02,973 - INFO - App URL: tcp://localhost:50693
+2025-09-19 20:17:02,973 - INFO - Starting Flet View app...
+2025-09-19 20:17:02,973 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:17:02,973 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:17:03,182 - INFO - App session started
+2025-09-19 20:17:03,486 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:22:03,651 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:23:55,837 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:23:55,839 - INFO - Starting up TCP server on localhost:62075
+2025-09-19 20:23:55,845 - INFO - Flet app has started...
+2025-09-19 20:23:55,847 - INFO - App URL: tcp://localhost:62075
+2025-09-19 20:23:55,847 - INFO - Starting Flet View app...
+2025-09-19 20:23:55,848 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:23:55,848 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:23:56,058 - INFO - App session started
+2025-09-19 20:23:56,063 - ERROR - ler_planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 20:24:15,253 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:24:15,255 - INFO - Starting up TCP server on localhost:62908
+2025-09-19 20:24:15,260 - INFO - Flet app has started...
+2025-09-19 20:24:15,261 - INFO - App URL: tcp://localhost:62908
+2025-09-19 20:24:15,261 - INFO - Starting Flet View app...
+2025-09-19 20:24:15,262 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:24:15,262 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:24:15,449 - INFO - App session started
+2025-09-19 20:24:15,786 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:25:06,091 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:25:06,092 - INFO - Starting up TCP server on localhost:56586
+2025-09-19 20:25:06,097 - INFO - Flet app has started...
+2025-09-19 20:25:06,099 - INFO - App URL: tcp://localhost:56586
+2025-09-19 20:25:06,099 - INFO - Starting Flet View app...
+2025-09-19 20:25:06,099 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:25:06,099 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:25:06,309 - INFO - App session started
+2025-09-19 20:25:06,550 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:31:23,505 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:31:23,506 - INFO - Starting up TCP server on localhost:52572
+2025-09-19 20:31:23,511 - INFO - Flet app has started...
+2025-09-19 20:31:23,512 - INFO - App URL: tcp://localhost:52572
+2025-09-19 20:31:23,513 - INFO - Starting Flet View app...
+2025-09-19 20:31:23,513 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:31:23,514 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:31:23,714 - INFO - App session started
+2025-09-19 20:31:24,000 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:31:56,696 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:31:56,697 - INFO - Starting up TCP server on localhost:52587
+2025-09-19 20:31:56,702 - INFO - Flet app has started...
+2025-09-19 20:31:56,703 - INFO - App URL: tcp://localhost:52587
+2025-09-19 20:31:56,703 - INFO - Starting Flet View app...
+2025-09-19 20:31:56,704 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:31:56,704 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:31:56,883 - INFO - App session started
+2025-09-19 20:31:57,116 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:36:57,283 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:41:57,388 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:46:57,492 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:49:21,797 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:49:21,800 - INFO - Starting up TCP server on localhost:50715
+2025-09-19 20:49:21,806 - INFO - Flet app has started...
+2025-09-19 20:49:21,808 - INFO - App URL: tcp://localhost:50715
+2025-09-19 20:49:21,808 - INFO - Starting Flet View app...
+2025-09-19 20:49:21,809 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:49:21,809 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:49:22,037 - INFO - App session started
+2025-09-19 20:49:22,419 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:49:28,422 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:49:28,424 - INFO - Starting up TCP server on localhost:50728
+2025-09-19 20:49:28,428 - INFO - Flet app has started...
+2025-09-19 20:49:28,429 - INFO - App URL: tcp://localhost:50728
+2025-09-19 20:49:28,429 - INFO - Starting Flet View app...
+2025-09-19 20:49:28,430 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:49:28,430 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:49:28,631 - INFO - App session started
+2025-09-19 20:49:28,636 - ERROR - Erro ao abrir planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 20:49:48,587 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 20:49:48,589 - INFO - Starting up TCP server on localhost:62403
+2025-09-19 20:49:48,596 - INFO - Flet app has started...
+2025-09-19 20:49:48,598 - INFO - App URL: tcp://localhost:62403
+2025-09-19 20:49:48,598 - INFO - Starting Flet View app...
+2025-09-19 20:49:48,600 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:49:48,600 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 20:49:48,800 - INFO - App session started
+2025-09-19 20:49:49,056 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:54:49,256 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 20:59:49,378 - ERROR - to_time_safe: hour must be in 0..23
+2025-09-19 21:03:51,913 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 21:03:51,916 - INFO - Starting up TCP server on localhost:62765
+2025-09-19 21:03:51,923 - INFO - Flet app has started...
+2025-09-19 21:03:51,925 - INFO - App URL: tcp://localhost:62765
+2025-09-19 21:03:51,925 - INFO - Starting Flet View app...
+2025-09-19 21:03:51,925 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 21:03:51,926 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 21:03:52,161 - INFO - App session started
+2025-09-19 21:03:52,167 - ERROR - Erro ao abrir planilha: [Errno 2] No such file or directory: 'C:\\Users\\Arklok\\OneDrive - Quality Software SA\\Documentos\\Agendamentos_Rollout_2025_SO.xlsx'
+2025-09-19 21:04:24,870 - INFO - Assets path configured: C:\Users\Administrador\view-upgrade\assets
+2025-09-19 21:04:24,872 - INFO - Starting up TCP server on localhost:62779
+2025-09-19 21:04:24,877 - INFO - Flet app has started...
+2025-09-19 21:04:24,878 - INFO - App URL: tcp://localhost:62779
+2025-09-19 21:04:24,878 - INFO - Starting Flet View app...
+2025-09-19 21:04:24,879 - INFO - Looking for Flet executable at: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 21:04:24,879 - INFO - Flet View found in: C:\Users\Administrador\AppData\Local\Programs\Python\Python312\Lib\site-packages\flet_desktop\app\flet\flet.exe
+2025-09-19 21:04:25,067 - INFO - App session started
+2025-09-19 21:04:25,406 - ERROR - to_time_safe: hour must be in 0..23
